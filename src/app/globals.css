@@ -75,3 +75,30 @@ h2 {
 		font-size: 32px;
 	}
 }
+
+
+/* styles/globals.css */
+#dots {
+	position: relative;
+	height: 100%;
+	min-width: 100px;
+	max-width: 100%;
+  }
+  
+  #dots .dot {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	position: absolute;
+	/* top: 66px; */
+	bottom: 10px !important;
+	left: 15px !important;
+	
+  }
+  
+  #dots .blue {
+	background-color: #3284ff;
+	left: 133px;
+  }
+  
+ 

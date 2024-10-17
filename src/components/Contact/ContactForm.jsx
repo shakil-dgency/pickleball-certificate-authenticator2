@@ -16,17 +16,17 @@ function ContactForm() {
 	});
 
 	const handleSubmit = async (e) => {
-		// const token = await getCaptchaToken();
-		// const newData = {...formData, token}
+		const token = await getCaptchaToken();
+		const newData = {...formData, token}
 
 		
-		// try {
-		// 	const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+		try {
+			const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-		// 	const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
-		// } catch (error) {
-		// 	console.log(error);
-		// }git 
+			const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 
