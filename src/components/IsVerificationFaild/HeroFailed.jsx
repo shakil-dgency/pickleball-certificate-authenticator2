@@ -6,7 +6,7 @@ import SearchAgain from "../SearchAgain";
 function HeroFailed() {
 	
 	return (
-		<div className="w-full  bg-[url('/IsverifiedFaild/verification_failed.png')] bg-no-repeat bg-cover ">
+		<div className="w-full bg-[#161616ed]  bg-[url('/IsverifiedFaild/verification_failed.png')] bg-no-repeat bg-cover ">
 			<SearchAgain />
 			<div className="g__mobile-container max-w-[850px] mx-auto text-center pb-[100px] pt-[60px] sm:pt-[80px] sm:pb-[160px] ">
 				<div className="flex justify-center mb-3 -mt-5">
