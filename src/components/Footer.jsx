@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function Footer() {
 	return (
-		<div className="bg-[url('/footerBG.png')] bg-no-repeat bg-cover">
+		<div className="bg-[url('/footerBG.png')] bg-black bg-no-repeat bg-cover">
 			<div className="border-b-[1px] border-b-[#DDD7A8]">
 				<div className="flex flex-col items-center max-w-[617px] mx-auto py-[50px] ">
 					<Image src={logo} height={45} width={200} className="" alt="" />
@@ -17,7 +17,7 @@ function Footer() {
 				</div>
 			</div>
             <div className="g__container text-[#CECECE] text-[12px] md:text-[14px] flex flex-col sm:flex-row gap-3 items-center justify-between py-3">
-                <p>© 2024 All rights reserved</p>
+                <p className="text-center sm:text-start">© {new Date().getFullYear()} Pickleball Certified Authentic. All Rights Reserved.</p>
                 <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-4 leading-4">
                     <Link href={"/contact"}>Contact Us</Link>
                     <span className="w-[6px] h-[6px] bg-[#CECECE] rounded-full"></span>

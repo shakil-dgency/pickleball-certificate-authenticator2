@@ -77,28 +77,72 @@ h2 {
 }
 
 
-/* styles/globals.css */
-#dots {
+
+
+
+button {
+	outline: 0;
+  }
+  button.active {
+	outline: 0;
+  }
+  
+  button.send {
+	/* border: 2px solid #fff; */
+	color: white;
+	border-radius: 0.375rem;
+	padding: 25px 120px;
+	background: #fa9d00;
 	position: relative;
-	height: 100%;
-	min-width: 100px;
-	max-width: 100%;
+	overflow: hidden;
+	transform: translateY(-50%);
+	margin-top: 20px;
   }
-  
-  #dots .dot {
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;
+  button.send .text {
 	position: absolute;
-	/* top: 66px; */
-	bottom: 10px !important;
-	left: 15px !important;
+	width: 100%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%) ;
+
+  }
+  button.send .text.active {
+	transform: translate(-50%,-350%) scale(0);
+	transition: 0.30s cubic-bezier(0.34, -0.61, 1, 0.64);
+  }
+  button.send.active {
+	padding: 8px 120px;
+	transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
+  }
+  button.send .loader {
+	position: absolute;
+	width: calc(0% - 4px);
+	height: calc(100% - 4px);
+	background-color: #744900;
+	left: 2px;
+	top: 2px;
+	border-radius:  0.375rem;
+  }
+  button.send .loader.active {
+	width: calc(100% - 4px);
+	transition: 1.3s ease-in-out;
+	transition-delay: 0.5s;
+  }
+  button.send .done {
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,300%) scale(0) ;
+  }
+  button.send .done.active {
 	
+	transform: translate(-50%,-50%)  scale(1);
+	transition: 0.45s cubic-bezier(0.34, -0.61, 1, 0.64);
   }
-  
-  #dots .blue {
-	background-color: #3284ff;
-	left: 133px;
+  button.send.finished {
+	padding: 25px 120px;
+	transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
   }
-  
  

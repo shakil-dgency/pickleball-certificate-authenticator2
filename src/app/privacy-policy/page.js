@@ -3,12 +3,12 @@ import React from "react";
 
 function page() {
 	return (
-		<div className=" max-w-[770px] mx-auto py-[90px]">
-			<h1 className="text-black text-center text-[54px]">Privacy Policy</h1>
-			<div className="blog_details pt-14">
+		<div className=" max-w-[770px] mx-auto py-[60px] sm:py-[90px] px-2.5">
+			<h1 className="text-black text-center text-[40px] sm:text-[54px]">Privacy Policy</h1>
+			<div className="blog_details pt-10 sm:pt-14">
 				<p className="">
 					At Pickleball Certified Authentic, we respect your privacy and are committed to protecting your personal information. This Privacy Policy
-					explains how we collect, use, disclose, and safeguard your information when you visit our website, www.pickleballcertifiedauthentic.com, or
+					explains how we collect, use, disclose, and safeguard your information when you visit our website, <a className="text-[#00B2FF_!important]" >www.pickleballcertifiedauthentic.com</a> , or
 					use our services. By using our Site and services, you agree to the terms outlined in this policy.
 				</p>
         <h2>1. Information We Collect</h2>
@@ -38,7 +38,7 @@ function page() {
         <h2>9. Your Acceptance of These Terms</h2>
         <p>By using this Site, you signify your acceptance of this Privacy Policy. If you do not agree, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.</p>
         <h2>10. Contact Us</h2>
-        <p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br />  Email: <br /> Phone: <br /> Address: </p>
+        <p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br />  Email: <a className="text-[#00B2FF_!important]" >www.pickleballcertifiedauthentic.com</a> </p>
 			</div>
 		</div>
 	);

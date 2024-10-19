@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import contact from "../../../public/contact.svg";
 import axios from "axios";
 import { getCaptchaToken } from "@/server/utils/captcha";
-
 
 function ContactForm() {
 	const [formData, setFormData] = useState({
@@ -15,21 +14,65 @@ function ContactForm() {
 		message: "",
 	});
 
+	const [isSuccess, setIsSuccess] = useState(false);
+
 	const handleSubmit = async (e) => {
+		e.preventDefault();
 		const token = await getCaptchaToken();
-		const newData = {...formData, token}
+		const newData = { ...formData, token };
 
-		
-		try {
-			const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-			const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
-		} catch (error) {
-			console.log(error);
+
+		if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
+			// Add 'active' class to elements
+			document.querySelector(".text").classList.add("active");
+			document.querySelector(".send").classList.add("active");
+			document.querySelector(".loader").classList.add("active");
+			console.log(formData);
+
+			// Delay to add 'finished' class
+			setTimeout(function () {
+				document.querySelector(".send").classList.add("finished");
+				document.querySelector(".loader").classList.remove("active");
+				setIsSuccess(true);
+			}, 1700);
+
+			// Delay to add 'active' class to '.done' element
+			setTimeout(function () {
+				document.querySelector(".done").classList.add("active");
+			}, 1600);
 		}
+
+
+
+		// if (isSuccess === true) {
+			try {
+				const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+				const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
+
+				setFormData({
+					firstName: "",
+					lastName: "",
+					email: "",
+					phoneNumber: "",
+					message: "",
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		// }
 	};
 
+	// useEffect(() => {
+	// 	const getFinishedClass = document.querySelector(".send");
 
+	// 	document.querySelector(".send").addEventListener("click", function () {
+			
+			
+			
+	// 	});
+	// }, []);
 
 	return (
 		<div className="g__mobile-container ">
@@ -42,6 +85,7 @@ function ContactForm() {
 								type="text"
 								placeholder="John"
 								value={formData.firstName}
+								required
 								onChange={(e) => setFormData((prev) => ({ ...prev, firstName: e.target.value }))}
 								className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-1.5 rounded-md outline-none px-2.5"
 							/>
@@ -52,6 +96,7 @@ function ContactForm() {
 								type="text"
 								placeholder="Doe"
 								value={formData.lastName}
+								required
 								onChange={(e) => setFormData((prev) => ({ ...prev, lastName: e.target.value }))}
 								className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-1.5 px-2.5 rounded-md outline-none"
 							/>
@@ -64,6 +109,7 @@ function ContactForm() {
 								type="email"
 								placeholder="demo@gmail.com"
 								value={formData.email}
+								required
 								onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
 								className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-1.5 px-2.5 rounded-md outline-none"
 							/>
@@ -71,9 +117,10 @@ function ContactForm() {
 						<div className="flex-1">
 							<p className="font-[500] text-[#262626] pb-1">Phone Number</p>
 							<input
-								type="phone"
+								type="number"
 								placeholder="+1 012 3456 789"
 								value={formData.phoneNumber}
+								required
 								onChange={(e) => setFormData((prev) => ({ ...prev, phoneNumber: e.target.value }))}
 								className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-1.5 px-2.5 rounded-md outline-none"
 							/>
@@ -86,16 +133,20 @@ function ContactForm() {
 							rows="10"
 							placeholder="Write your message..."
 							value={formData.message}
+							required
 							onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
 							className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-2 px-3 rounded-md resize-none outline-none"
 						/>
-						<div className="mt-5 flex justify-end">
-							<button  type="submit" className="bg-[#FA9D00] px-10 py-3 sm:py-2.5 rounded-md font-[500] w-full sm:w-auto">
-								Send Message
-							</button>
+						<div className="h-[70px]">
+							<div className="mt-5 flex justify-end ">
+								<button type="submit" className="send w-full sm:w-[inherit] ">
+									<div class="text font-[500] ">Send Message</div>
+									<div class="loader text-[12px]"></div>
+									<div class="done">SUCCESS</div>
+								</button>
+							</div>
 						</div>
 					</div>
-					
 				</form>
 				<Image src={contact} height={97} width={242} className="absolute bottom-4 left-[50%] translate-x-[-50%] sm:translate-x-0 sm:left-4" alt="" />
 			</div>

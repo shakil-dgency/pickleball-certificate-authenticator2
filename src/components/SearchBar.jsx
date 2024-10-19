@@ -56,7 +56,7 @@ function SearchBar() {
 					onClick={handleGetCertificate}
 					className={`group flex-none relative bg-[#FA9D00]  px-3 sm:px-8   flex justify-center items-center gap-1 font-[500] sm:text-[20px] rounded-r-md cursor-pointer `}
 				>
-					<span className={`${isLoading ? "opacity-0 " : "group-hover:scale-90 duration-300"} `}>Search</span>
+					<span className={`${isLoading ? "opacity-0 " : "group-hover:scale-110 duration-300"} `}>Search</span>
 					<Lottie loop={true} animationData={search} className={`${isLoading ? "opacity-0 " : "group-hover:scale-125 duration-300"} h- w-[40px] `} />
 					{/* {!isLoading && <LoadingAnimation />} */}
 					{isLoading && <Image src={ball} height={30} width={40} alt="" className="animate-spin absolute " />}

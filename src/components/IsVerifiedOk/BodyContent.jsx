@@ -37,6 +37,10 @@ function BodyContent({ post }) {
 						<p className="font-[400] text-[20px] text-[#262626] pt-3">{post?.match_used}</p>
 					</div>
 					<div className="max-w-[500px]">
+						<p className="text-[36px] font-[600] text-[#212222] font-barlow">Match Details</p>
+						<p className="font-[400] text-[20px] text-[#262626] pt-3">{post?.match_details}</p>
+					</div>
+					<div className="max-w-[500px]">
 						<p className="text-[36px] font-[600] text-[#212222] font-barlow">Item Details</p>
 						<p className="font-[400] text-[20px] text-[#262626] pt-3">{post?.item_details}</p>
 					</div>

@@ -3,14 +3,13 @@ import Image from "next/image";
 import React from "react";
 import logo from "../../public/logo.svg";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useGlobalState } from "@/context/GlobalStateContext";
 
 function Navbar() {
-	const param = usePathname();
+	const { updatePost } = useGlobalState();
+
 	const handleReload = () => {
-		if (param === "/") {
-			window.location.reload();
-		}
+		updatePost(null);
 	};
 
 	return (
