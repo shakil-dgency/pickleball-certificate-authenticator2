@@ -97,6 +97,7 @@ button {
 	overflow: hidden;
 	transform: translateY(-50%);
 	margin-top: 20px;
+	transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
   }
   button.send .text {
 	position: absolute;
@@ -104,6 +105,7 @@ button {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%,-50%) ;
+	transition: 0.50s cubic-bezier(0.34, -0.61, 1, 0.64);
 
   }
   button.send .text.active {
@@ -128,21 +130,32 @@ button {
 	transition: 1.3s ease-in-out;
 	transition-delay: 0.5s;
   }
-  button.send .done {
+  /* button.send .done {
 	color: #fff;
 	position: absolute;
 	width: 100%;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%,300%) scale(0) ;
-  }
-  button.send .done.active {
+  } */
+  /* button.send .done.active {
 	
 	transform: translate(-50%,-50%)  scale(1);
 	transition: 0.45s cubic-bezier(0.34, -0.61, 1, 0.64);
-  }
-  button.send.finished {
+  } */
+  /* button.send.finished {
 	padding: 25px 120px;
 	transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
+  } */
+
+  .success{
+	left: 50%;
+	transform: translateX(-50%) scale(0);
+	transition: 0.4s cubic-bezier(0.35, -0.77, 0.67, 1.88);
+  }
+
+  .success.active{
+	transform: translateX(-50%) scale(1);
+	transition: 1.5s cubic-bezier(0.35, -0.77, 0.67, 1.88);
   }
  

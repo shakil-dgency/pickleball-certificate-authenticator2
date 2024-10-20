@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import contact from "../../../public/contact.svg";
 import axios from "axios";
 import { getCaptchaToken } from "@/server/utils/captcha";
+import Lottie from "lottie-react";
+// import success from "../../../public/success.json"
+import check from "../../../public/IsverifiedOk/check.json";
 
 function ContactForm() {
 	const [formData, setFormData] = useState({
@@ -23,44 +26,51 @@ function ContactForm() {
 
 
 
-		if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
-			// Add 'active' class to elements
-			document.querySelector(".text").classList.add("active");
-			document.querySelector(".send").classList.add("active");
-			document.querySelector(".loader").classList.add("active");
-			console.log(formData);
+			if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
+				// Add 'active' class to elements
+				document.querySelector(".text").classList.add("active");
+				document.querySelector(".send").classList.add("active");
+				document.querySelector(".loader").classList.add("active");
 
-			// Delay to add 'finished' class
-			setTimeout(function () {
-				document.querySelector(".send").classList.add("finished");
-				document.querySelector(".loader").classList.remove("active");
-				setIsSuccess(true);
-			}, 1700);
+				// Delay to add 'finished' class
+				setTimeout(function () {
+					// document.querySelector(".send").classList.add("finished");
+					document.querySelector(".loader").classList.remove("active");
+					document.querySelector(".text").classList.remove("active");
+					document.querySelector(".send").classList.remove("active");
+					setIsSuccess(true);
+				}, 1700);
 
-			// Delay to add 'active' class to '.done' element
-			setTimeout(function () {
-				document.querySelector(".done").classList.add("active");
-			}, 1600);
-		}
+				// Delay to add 'active' class to '.done' element
+				setTimeout(function () {
+					// document.querySelector(".done").classList.add("active");
+					document.querySelector(".success").classList.add("active");
+				}, 1600);
+
+				setTimeout(function () {
+					// document.querySelector(".done").classList.add("active");
+					document.querySelector(".success").classList.remove("active");
+				}, 4000);
+			}
 
 
 
 		// if (isSuccess === true) {
-			try {
-				const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+		try {
+			const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-				const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
+			const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
 
-				setFormData({
-					firstName: "",
-					lastName: "",
-					email: "",
-					phoneNumber: "",
-					message: "",
-				});
-			} catch (error) {
-				console.log(error);
-			}
+			setFormData({
+				firstName: "",
+				lastName: "",
+				email: "",
+				phoneNumber: "",
+				message: "",
+			});
+		} catch (error) {
+			console.log(error);
+		}
 		// }
 	};
 
@@ -68,9 +78,7 @@ function ContactForm() {
 	// 	const getFinishedClass = document.querySelector(".send");
 
 	// 	document.querySelector(".send").addEventListener("click", function () {
-			
-			
-			
+		
 	// 	});
 	// }, []);
 
@@ -138,12 +146,18 @@ function ContactForm() {
 							className="w-full bg-[#F5F5F5] border-[1px] border-[#E6E6E6] py-2 px-3 rounded-md resize-none outline-none"
 						/>
 						<div className="h-[70px]">
-							<div className="mt-5 flex justify-end ">
-								<button type="submit" className="send w-full sm:w-[inherit] ">
-									<div class="text font-[500] ">Send Message</div>
-									<div class="loader text-[12px]"></div>
-									<div class="done">SUCCESS</div>
-								</button>
+							<div className="mt-5 flex justify-end relative">
+								<span className="relative w-full sm:w-[inherit]">
+									<button type="submit" className="send  w-full sm:w-[inherit]">
+										<div className="text font-[500] ">Send Message</div>
+										<div className="loader text-[12px]"></div>
+										{/* <div class="done">SUCCESS</div> */}
+									</button>
+									<div className="success absolute  -bottom-3 text-[#00A631] flex items-center gap-1">
+										<Lottie loop={true} animationData={check} className="h-[25px] sm:h-[30px] w-[25px] sm:w-[30px]" />
+										Success!!
+									</div>
+								</span>
 							</div>
 						</div>
 					</div>

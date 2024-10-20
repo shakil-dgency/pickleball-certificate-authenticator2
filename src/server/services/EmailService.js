@@ -47,7 +47,7 @@ export const EmailService = async (data, mode = '')=>{
     const mailOptions= {
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
-        subject: `Message from ${data?.candidateName || data?.studentName}`,
+        subject: `Message from ${data?.firstName }`,
         replyTo: data?.email,
         html: template.html(data)
     }

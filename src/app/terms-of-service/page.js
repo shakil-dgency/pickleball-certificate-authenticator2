@@ -100,7 +100,7 @@ function page() {
 					of [insert jurisdiction].
 				</p>
 				<h2>14. Contact Us</h2>
-				<p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br/>  Email: <a className="text-[#00B2FF_!important]" >info@pickleballcertifiedauthentic.com</a></p>
+				<p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br/>  Email: <a href="mailto:info@pickleballcertifiedauthentic.com" className="text-[#00B2FF_!important]" >info@pickleballcertifiedauthentic.com</a></p>
 			</div>
 		</div>
 	);

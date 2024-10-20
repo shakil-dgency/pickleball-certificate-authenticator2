@@ -38,7 +38,7 @@ function page() {
         <h2>9. Your Acceptance of These Terms</h2>
         <p>By using this Site, you signify your acceptance of this Privacy Policy. If you do not agree, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.</p>
         <h2>10. Contact Us</h2>
-        <p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br />  Email: <a className="text-[#00B2FF_!important]" >www.pickleballcertifiedauthentic.com</a> </p>
+        <p>If you have any questions or concerns about this Privacy Policy, please contact us at: <br />  Email: <a href="mailto:info@pickleballcertifiedauthentic.com" className="text-[#00B2FF_!important]" >info@pickleballcertifiedauthentic.com</a> </p>
 			</div>
 		</div>
 	);

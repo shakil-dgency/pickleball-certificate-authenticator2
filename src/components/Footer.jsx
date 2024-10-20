@@ -24,6 +24,8 @@ function Footer() {
                     <Link href={'/terms-of-service'}>Terms of Service</Link>
                     <span className="w-[6px] h-[6px] bg-[#CECECE] rounded-full"></span>
                     <Link href={"/privacy-policy"}>Privacy Policy</Link>
+                    <span className="w-[6px] h-[6px] bg-[#CECECE] rounded-full"></span>
+                    <Link href={"https://certificate.thepickleballscoreboard.com/wp-admin"} target="__blank">Admin</Link>
                 </div>
             </div>
 		</div>
