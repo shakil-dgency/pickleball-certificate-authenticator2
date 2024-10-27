@@ -8,12 +8,14 @@ import Image from "next/image";
 import ball from "../../public/favicon.svg";
 
 function SearchBar() {
-	const { post, updatePost } = useGlobalState();
+	const { post, updatePost,setInput } = useGlobalState();
 	const [certificateNumber, setCertificateNumber] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleGetCertificate = async () => {
 		setIsLoading(true);
+		setInput(certificateNumber);
+
 		try {
 			const certificate = await fetch(`/api/certificates/${certificateNumber}`);
 
@@ -46,6 +48,7 @@ function SearchBar() {
 							}
 						}}
 						onChange={(e) => setCertificateNumber(e.target.value)}
+						maxLength="7"
 						className={`${
 							post === undefined ? "bg-[#F5F5F5]" : ""
 						} w-full py-[14px] px-2.5 sm:px-5 rounded-l-md outline-none text-base sm:text-[18px]`}
@@ -54,7 +57,7 @@ function SearchBar() {
 
 				<div
 					onClick={handleGetCertificate}
-					className={`group flex-none relative bg-[#FA9D00]  px-3 sm:px-8   flex justify-center items-center gap-1 font-[500] sm:text-[20px] rounded-r-md cursor-pointer `}
+					className={`group flex-none relative bg-[#FA9D00]  px-3 sm:px-8 -ml-2  flex justify-center items-center gap-1 font-[500] sm:text-[20px] rounded-r-md cursor-pointer `}
 				>
 					<span className={`${isLoading ? "opacity-0 " : "group-hover:scale-110 duration-300"} `}>Search</span>
 					<Lottie loop={true} animationData={search} className={`${isLoading ? "opacity-0 " : "group-hover:scale-125 duration-300"} h- w-[40px] `} />

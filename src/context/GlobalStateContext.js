@@ -7,6 +7,7 @@ const GlobalStateContext = createContext();
 // Create a provider component
 export const GlobalStateProvider = ({ children }) => {
     const [post, setPost] = useState(null);
+    const [input, setInput] = useState(null);
   
     // Method to update the post state
     const updatePost = (newPost) => {
@@ -14,7 +15,7 @@ export const GlobalStateProvider = ({ children }) => {
     };
   
     return (
-      <GlobalStateContext.Provider value={{ post, updatePost }}>
+      <GlobalStateContext.Provider value={{ post, updatePost,input,setInput }}>
         {children}
       </GlobalStateContext.Provider>
     );

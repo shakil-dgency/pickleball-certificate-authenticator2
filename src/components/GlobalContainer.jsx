@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './Home/Hero/Hero'
 import PurchaseIncludes from './Home/PurchaseIncludes'
 import AboutAndGallery from './Home/AboutAndGallery'
@@ -10,7 +10,12 @@ import FailedMessage from './IsVerificationFaild/FailedMessage'
 import { useGlobalState } from "@/context/GlobalStateContext";
 
 function GlobalContainer() {
-    const { post } = useGlobalState();
+    const { post,input } = useGlobalState();
+
+	useEffect(()=>{
+		window.scrollTo(0,0)
+
+	},[post])
     
   return (
     <div>
@@ -31,7 +36,7 @@ function GlobalContainer() {
 
 			{post===undefined && <div>
 				<HeroFailed />
-				<FailedMessage />
+				<FailedMessage input={input} />
 			</div>}
 		</div>
     </div>
