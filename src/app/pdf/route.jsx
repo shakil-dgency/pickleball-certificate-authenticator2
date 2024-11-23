@@ -116,10 +116,10 @@ const MyDocument = ({ post }) => {
 		<Document>
 			<Page size="A4" style={styles.container}>
 				<View style={styles.wrapper}>
-					<Image src="http://localhost:3000/certificates.png" style={styles.backgroundImage} />
+					<Image src={`${process.env.BASE_URL}/certificates.png`} style={styles.backgroundImage} />
 					{/* Header */}
 					<View style={styles.header}>
-						<Image src="http://localhost:3000/certificatelogo.png" style={{ width: 200, height: 46 }} />
+						<Image src={`${process.env.BASE_URL}/certificatelogo.png`} style={{ width: 200, height: 46 }} />
 						<Text style={styles.title}>
 							Serial Number - <Text style={styles.serialNumber}>{post?.certificate_number}</Text>
 						</Text>
