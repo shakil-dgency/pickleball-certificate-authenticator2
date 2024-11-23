@@ -205,7 +205,7 @@ export async function GET(req, res) {
 
 		return new NextResponse(stream);
 	} catch (error) {
-		console.log(error);
+		
 
 		return new NextResponse.json({ error: "An error occurred" }, { status: 500 });
 	}
