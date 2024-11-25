@@ -35,6 +35,7 @@ function PurchaseIncludes() {
 					</p>
 				</div>
 			</div>
+		
 		</div>
 	);
 }

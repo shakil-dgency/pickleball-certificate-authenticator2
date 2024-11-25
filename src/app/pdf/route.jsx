@@ -12,13 +12,16 @@ const styles = StyleSheet.create({
 		position: "relative",
 		height: "100%",
 		width: "100%",
-		padding: 30,
+		objectFit:'cover',
+		paddingTop: 30,
+		paddingLeft: 30,
+		paddingRight:40
 	},
 	backgroundImage: {
 		position: "absolute", // Make the image a background
 		top: 0,
 		left: 0,
-		objectFit: "cover",
+		
 		width: "100%",
 		height: "100%",
 		zIndex: -1, // Send it to the background
@@ -45,7 +48,11 @@ const styles = StyleSheet.create({
 		gap: 10,
 	},
 	section: {
-		marginTop: 20,
+		marginTop: 30,
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		gap: 25,
 	},
 	item: {
 		marginBottom: 15,
@@ -67,13 +74,14 @@ const styles = StyleSheet.create({
 		color: "#565656",
 		fontFamily: "Roboto",
 		marginTop: 6,
+		lineHeight: 1.4,
 	},
 	imageContainer: {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
-		gap: 4,
-		marginTop: 6,
+		gap: 6,
+		marginTop: 8,
 	},
 	profileImage: {
 		height: 40,
@@ -81,11 +89,11 @@ const styles = StyleSheet.create({
 		borderRadius: "50%",
 	},
 	profileDetails: {
-		maxWidth: 200,
+		maxWidth: 150,
 	},
 	name: {
 		fontSize: 12,
-		fontWeight: 500,
+		fontWeight: 600,
 		color: "#212222",
 		fontFamily: "Roboto",
 	},
@@ -97,14 +105,27 @@ const styles = StyleSheet.create({
 	},
 	address: {
 		position: "absolute",
-		bottom: 20,
+		bottom: 22,
 		left: "50%",
 		transform: "translateX(-90%)",
 	},
 	textAddress: {
 		fontSize: 12,
 		fontWeight: 400,
-		color: "#ffffff",
+		color: "#565656",
+	},
+	text_content: {
+		flex: 3,
+	},
+	imageItemContainer: {
+		flex: 2,
+		marginTop:10
+	},
+	itemImage: {
+		borderRadius: 15,
+		height: 252,
+		width: 212,
+		marginBottom: 15
 	},
 });
 
@@ -114,59 +135,63 @@ const MyDocument = ({ post }) => {
 	const formattedDate = signedDate ? signedDate.toLocaleDateString("en-CA") : "";
 	return (
 		<Document>
-			<Page size="A4" style={styles.container}>
+			<Page size="LETTER" style={styles.container}>
 				<View style={styles.wrapper}>
-					<Image src={`${process.env.BASE_URL}/certificates.png`} style={styles.backgroundImage} />
+					<Image src={`${process.env.BASE_URL}/certificates-bg.jpg`} style={styles.backgroundImage} />
 					{/* Header */}
 					<View style={styles.header}>
 						<Image src={`${process.env.BASE_URL}/certificatelogo.png`} style={{ width: 200, height: 46 }} />
 						<Text style={styles.title}>
-							Serial Number - <Text style={styles.serialNumber}>{post?.certificate_number}</Text>
+							Serial Number - <Text style={styles.serialNumber}>{post?.certificate_number} <Image src={`${process.env.BASE_URL}/check.png`} style={{width:13, height:13,paddingTop: 4}} /></Text>
 						</Text>
 					</View>
 
 					{/* Content */}
 					<View style={styles.section}>
-						{/* Item Description */}
-						<View style={styles.item}>
-							<Text style={styles.label}>Item Description</Text>
-							<Text style={styles.text}>{post?.item_description}</Text>
-						</View>
+						<View style={styles.text_content}>
+							{/* Item Description */}
+							<View style={styles.item}>
+								<Text style={styles.label}>Item Description</Text>
+								<Text style={styles.text}>{post?.item_description}</Text>
+							</View>
 
-						{/* Match Used */}
-						<View style={styles.item}>
-							<Text style={styles.label}>
-								Match Used - <Text style={styles.text}>{post?.match_used}</Text>
-							</Text>
-						</View>
+							{/* Match Used */}
+							<View style={styles.item}>
+								<Text style={styles.label}>
+									Match Used - <Text style={styles.text}>{post?.match_used}</Text>
+								</Text>
+							</View>
 
-						{/* Match Details */}
-						<View style={styles.item}>
-							<Text style={styles.label}>Match Details</Text>
-							<Text style={styles.text}>{post?.match_details}</Text>
-						</View>
+							{/* Match Details */}
+							<View style={styles.item}>
+								<Text style={styles.label}>Match Details</Text>
+								<Text style={styles.text}>{post?.match_details}</Text>
+							</View>
 
-						{/* Item Details */}
-						<View style={styles.item}>
-							<Text style={styles.label}>Item Details</Text>
-							<Text style={styles.text}>{post?.item_details}</Text>
-						</View>
+							{/* Item Details */}
+							<View style={styles.item}>
+								<Text style={styles.label}>Item Details</Text>
+								<Text style={styles.text}>{post?.item_details}</Text>
+							</View>
 
-						{/* Date Signed */}
-						<View style={styles.item}>
-							<Text style={styles.label}>
-								Date Signed - <Text style={styles.text}>{formattedDate}</Text>
-							</Text>
+							{/* Date Signed */}
+							<View style={styles.item}>
+								<Text style={styles.label}>
+									Date Signed - <Text style={styles.text}>{formattedDate}</Text>
+								</Text>
+							</View>
 						</View>
-
-						{/* Signed By */}
-						<View style={styles.item}>
-							<Text style={styles.label}>Signed By</Text>
-							<View style={styles.imageContainer}>
-								<Image src={post?.signed_by_picture} style={styles.profileImage} />
-								<View style={styles.profileDetails}>
-									<Text style={styles.name}>{post?.signed_by_player_name}</Text>
-									<Text style={styles.profession}>{post?.signed_by_profession}</Text>
+						<View style={styles.imageItemContainer}>
+							<Image src={post?.item_images} style={styles.itemImage} />
+							{/* Signed By */}
+							<View style={styles.item}>
+								<Text style={styles.label}>Signed By</Text>
+								<View style={styles.imageContainer}>
+									<Image src={post?.signed_by_picture} style={styles.profileImage} />
+									<View style={styles.profileDetails}>
+										<Text style={styles.name}>{post?.signed_by_player_name}</Text>
+										<Text style={styles.profession}>{post?.signed_by_profession}</Text>
+									</View>
 								</View>
 							</View>
 						</View>
@@ -205,8 +230,6 @@ export async function GET(req, res) {
 
 		return new NextResponse(stream);
 	} catch (error) {
-		
-
 		return new NextResponse.json({ error: "An error occurred" }, { status: 500 });
 	}
 }

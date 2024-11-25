@@ -40,13 +40,25 @@ function AboutAndGallery() {
 			</div>
 			<div className="pb-[120px] pt-[80px] sm:pt-[120px] ">
 				<h2 className="text-center sm:hidden">Gallery</h2>
-				<div className="pt-[25px] grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-10  relative z-30">
-					<Image src={gallery1} height={300} width={460} className="w-full h-full object-cover" alt="" />
-					<Image src={gallery2} height={600} width={500} className="w-full" alt="" />
-					<Image src={gallery3} height={600} width={500} className="w-full" alt="" />
-					<Image src={gallery4} height={600} width={500} className="w-full" alt="" />
-					<Image src={gallery5} height={600} width={500} className="w-full" alt="" />
-					<Image src={gallery6} height={600} width={500} className="w-full" alt="" />
+				<div className=" pt-[25px] grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-10  relative z-30 overflow-hidden">
+					<div className="overflow-hidden">
+						<Image src={gallery1} height={300} width={460} className="w-full h-full object-cover hover:scale-105 duration-500" alt="" />
+					</div>
+					<div className="overflow-hidden">
+						<Image src={gallery2} height={600} width={500} className="w-full hover:scale-105 duration-500" alt="" />
+					</div>
+					<div className="overflow-hidden">
+						<Image src={gallery3} height={600} width={500} className="w-full hover:scale-105 duration-500" alt="" />
+					</div>
+					<div className="overflow-hidden">
+						<Image src={gallery4} height={600} width={500} className="w-full hover:scale-105 duration-500" alt="" />
+					</div>
+					<div className="overflow-hidden">
+						<Image src={gallery5} height={600} width={500} className="w-full hover:scale-105 duration-500" alt="" />
+					</div>
+					<div className="overflow-hidden">
+						<Image src={gallery6} height={600} width={500} className="w-full hover:scale-105 duration-500" alt="" />
+					</div>
 				</div>
 			</div>
 			<div className="h-[60px] w-full bg-gradient-to-b from-white to-transparent absolute -top-0 z-10"></div>

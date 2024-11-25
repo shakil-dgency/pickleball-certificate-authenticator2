@@ -8,9 +8,11 @@ import Image from "next/image";
 import ball from "../../public/favicon.svg";
 
 function SearchBar() {
-	const { post, updatePost,setInput } = useGlobalState();
+	const { post, updatePost, setInput } = useGlobalState();
 	const [certificateNumber, setCertificateNumber] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+
+
 
 	const handleGetCertificate = async () => {
 		setIsLoading(true);
@@ -57,7 +59,7 @@ function SearchBar() {
 
 				<div
 					onClick={handleGetCertificate}
-					className={`group flex-none relative bg-[#FA9D00]  px-3 sm:px-8 -ml-2  flex justify-center items-center gap-1 font-[500] sm:text-[20px] rounded-r-md cursor-pointer `}
+					className={`group btn_click flex-none relative bg-[#FA9D00]  px-3 sm:px-8 -ml-2  flex justify-center items-center gap-1 font-[500] sm:text-[20px] rounded-r-md cursor-pointer `}
 				>
 					<span className={`${isLoading ? "opacity-0 " : "group-hover:scale-110 duration-300"} `}>Search</span>
 					<Lottie loop={true} animationData={search} className={`${isLoading ? "opacity-0 " : "group-hover:scale-125 duration-300"} h- w-[40px] `} />

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../public/footer_logo.svg";
 import Lottie from "lottie-react";
 import check from "../../../public/IsverifiedOk/check.json";
@@ -9,11 +9,36 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import { useRef } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import Button from "../Button/Button";
 
 function BodyContent({ post }) {
-	const inputRef = useRef(null);
-	const printDocument = () => {
-		let downLoad;
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleDownload = async (e) => {
+		e.preventDefault();
+		setIsLoading(true);
+
+		try {
+			const response = await fetch(`/pdf?${post?.certificate_number}`);
+			if (!response.ok) {
+				throw new Error("Failed to fetch the PDF.");
+			}
+
+			const blob = await response.blob();
+			const url = window.URL.createObjectURL(blob);
+
+			const link = document.createElement("a");
+			link.href = url;
+			link.setAttribute("download", `pickleballcertified-authentic-${post?.certificate_number}.pdf`);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+			window.URL.revokeObjectURL(url);
+		} catch (error) {
+			console.error(error.message);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const date = (dateStr) => {
@@ -23,6 +48,9 @@ function BodyContent({ post }) {
 
 		return formattedDate;
 	};
+
+	console.log(post);
+	
 	return (
 		<div>
 			<div className="bg-[#EDEDED] py-5">
@@ -56,7 +84,7 @@ function BodyContent({ post }) {
 					<div className="">
 						<p className="text-[28px] sm:text-[32px] font-[600] text-[#212222] font-barlow">Signed By</p>
 						<div className="flex items-center gap-4 pt-3">
-							<Image src={post?.signed_by_picture} height={100} width={100} alt="" className="flex-none" />
+							<Image src={post?.signed_by_picture} height={100} width={100} alt="" className="h-[100px] w-[100px] object-cover flex-none" />
 							<div className="max-w-[200px]">
 								<p className="text-[20px] text-[#262626] font-[500]">{post?.signed_by_player_name}</p>
 								<p className="text-[14px] text-[#262626]">{post?.signed_by_profession}</p>
@@ -74,15 +102,30 @@ function BodyContent({ post }) {
 					<div className="max-w-[500px]">
 						<Image src={post?.item_images} height={550} width={500} className="h-[550px] w-auto object-cover" alt="" />
 					</div>
+					<div className="flex flex-col items-center mt-10">
+						<p className="text-[28px] text-center font-barlow mb-3">Download Your Certificate </p>
+						{/* <a
+							href="#"
+							onClick={handleDownload}
+							// download={`pickleballcertified-authentic-${post?.certificate_number}.pdf`}
+							style={{ pointerEvents: isLoading ? "none" : "auto" }}
+							className="group text-base font-500 px-8 py-2 bg-[#FA9D00] rounded-md mt-4 flex items-center gap-2.5 text-white "
+						>
+							{isLoading ? (
+								<>
+									Loading .....
+								</>
+							) : (
+								<>
+									Download <FaArrowDownLong className="group-hover:animate-bounce" />
+								</>
+							)}
+						</a> */}
+						<Button certificateNumber={post?.certificate_number} />
+					</div>
 				</div>
 			</div>
 			{/* <ViewPdf post={post} certificatelogo={certificatelogo} /> */}
-			<div className="flex flex-col items-center mb-20">
-				<p className="text-[28px] text-center">Download your certificate </p>
-				<a href={`/pdf?${post?.certificate_number}`} target="_blank" download='certificate.pdf' className="group text-base font-500 px-8 py-2 bg-[#FA9D00] rounded-md mt-4 flex items-center gap-2.5 ">
-					Download <FaArrowDownLong className="group-hover:animate-bounce" />
-				</a>
-			</div>
 
 			{/* <div ref={inputRef} className="max-w-[850px] mx-auto bg-[url('/certificates.png')] bg-no-repeat bg-[length:100%_100%] bg-center px-10 ">
 				<div className="flex flex-col justify-center items-center">

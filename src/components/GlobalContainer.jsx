@@ -16,6 +16,8 @@ function GlobalContainer() {
 		window.scrollTo(0,0)
 
 	},[post])
+	console.log(post);
+	
     
   return (
     <div>

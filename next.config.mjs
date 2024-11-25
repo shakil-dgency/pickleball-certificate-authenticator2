@@ -4,10 +4,14 @@ const nextConfig = {
     images: {
         remotePatterns: [
           {
-            protocol: 'http',
+            protocol: 'https',
             hostname: 'certificate.thepickleballscoreboard.com',
             // port: '',
             // pathname: '/account123/**',
+          },
+          {
+            protocol: 'http',
+            hostname: 'certificate.thepickleballscoreboard.com',
           },
         ],
       },
