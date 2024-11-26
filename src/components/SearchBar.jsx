@@ -12,14 +12,14 @@ function SearchBar() {
 	const [certificateNumber, setCertificateNumber] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
-
-
 	const handleGetCertificate = async () => {
 		setIsLoading(true);
 		setInput(certificateNumber);
 
 		try {
-			const certificate = await fetch(`/api/certificates/${certificateNumber}`);
+			const certificate = await fetch(`/api/certificates/${certificateNumber}`, {
+				cache: "no-cache",
+			});
 
 			if (!certificate.ok) {
 				throw new Error("Failed to fetch certificate");

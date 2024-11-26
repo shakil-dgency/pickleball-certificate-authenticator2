@@ -1,48 +1,53 @@
-"use client"
-import React, { useEffect } from 'react'
-import Hero from './Home/Hero/Hero'
-import PurchaseIncludes from './Home/PurchaseIncludes'
-import AboutAndGallery from './Home/AboutAndGallery'
-import BodyContent from './IsVerifiedOk/BodyContent'
+"use client";
+import React, { useEffect } from "react";
+import Hero from "./Home/Hero/Hero";
+import PurchaseIncludes from "./Home/PurchaseIncludes";
+import AboutAndGallery from "./Home/AboutAndGallery";
+import BodyContent from "./IsVerifiedOk/BodyContent";
 import HeroOk from "./IsVerifiedOk/HeroOk";
-import HeroFailed from './IsVerificationFaild/HeroFailed'
-import FailedMessage from './IsVerificationFaild/FailedMessage'
+import HeroFailed from "./IsVerificationFaild/HeroFailed";
+import FailedMessage from "./IsVerificationFaild/FailedMessage";
 import { useGlobalState } from "@/context/GlobalStateContext";
 
 function GlobalContainer() {
-    const { post,input } = useGlobalState();
+	const { post, input } = useGlobalState();
 
-	useEffect(()=>{
-		window.scrollTo(0,0)
+	useEffect(() => {
+		window.scrollTo(0, 0);
 
-	},[post])
-	console.log(post);
-	
-    
-  return (
-    <div>
-        <div className="">
-			{post === null && <div>
-				<Hero />
-				<PurchaseIncludes />
-				<AboutAndGallery />
-			</div>}
+		console.log(post);
+	},[post]);
 
-			{/* --------verification ok ----------- */}
-			{post !== null && post!==undefined && <div>
-				<HeroOk />
-				<BodyContent post={post} />
-			</div>}
+	return (
+		<div>
+			<div className="">
+				{post === null && (
+					<div>
+						<Hero />
+						<PurchaseIncludes />
+						<AboutAndGallery />
+					</div>
+				)}
 
-			{/* ------------verification faild-------------- */}
+				{/* --------verification ok ----------- */}
+				{post !== null && post !== undefined && (
+					<div>
+						<HeroOk />
+						<BodyContent post={post} />
+					</div>
+				)}
 
-			{post===undefined && <div>
-				<HeroFailed />
-				<FailedMessage input={input} />
-			</div>}
+				{/* ------------verification faild-------------- */}
+
+				{post === undefined && (
+					<div>
+						<HeroFailed />
+						<FailedMessage input={input} />
+					</div>
+				)}
+			</div>
 		</div>
-    </div>
-  )
+	);
 }
 
-export default GlobalContainer
+export default GlobalContainer;

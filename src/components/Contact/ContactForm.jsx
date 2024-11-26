@@ -162,7 +162,7 @@ function ContactForm() {
 						</div>
 					</div>
 				</form>
-				<Image src={contact} height={97} width={242} className="absolute bottom-4 left-[50%] translate-x-[-50%] sm:translate-x-0 sm:left-4" alt="" />
+				<Image src={contact} height={97} width={242}  priority  className="absolute bottom-4 left-[50%] translate-x-[-50%] sm:translate-x-0 sm:left-4" alt="" />
 			</div>
 		</div>
 	);
