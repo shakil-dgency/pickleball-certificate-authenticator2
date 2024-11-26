@@ -185,10 +185,10 @@ function Button({ certificateNumber }) {
 				// }}
 			>
 				{" "}
-				<span className=" bg-[#fca91c] h-full pl-8 pr-4 flex items-center text-white">
+				<span className=" bg-[#fca91c] relative h-full pl-8 pr-4 flex items-center text-white">
 					<span className={`text ${isDownloading?'translate-y-[-40px]': 'translate-y-0'}`}>Download Your Certificate</span>
 					<span className="D_completed absolute translate-y-[40px]">Download Completed</span>
-					<span className={`D_loading absolute  ${isDownloading?'translate-y-0': 'translate-y-[40px]'}`}>Please Wait</span>
+					<span className={`D_loading absolute left-[50%] translate-x-[-50%] duration-300  ${isDownloading?'translate-y-0': 'translate-y-[40px]'}`}>Please Wait...</span>
 				</span>
 				<div className="inner">
 					<svg viewBox="0 0 24 24"></svg>
