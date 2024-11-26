@@ -8,7 +8,7 @@ import gallery5 from "../../../public/home/gallery/5.png";
 import gallery6 from "../../../public/home/gallery/6.png";
 import about from "../../../public/home/about us.png";
 
-function AboutAndGallery() {
+function AboutAndGallery({handleClik}) {
 	return (
 		<div className="   relative ">
 			<div className="absolute inset-0 bg-[url('/home/aboutBG.png')] bg-no-repeat bg-cover opacity-60 z-10"></div>
@@ -38,6 +38,7 @@ function AboutAndGallery() {
 					<Image src={about} height={600} width={500} className=" h-[600px] w-auto object-cover" alt="" />
 				</div>
 			</div>
+			
 			<div className="pb-[120px] pt-[80px] sm:pt-[120px] ">
 				<h2 className="text-center sm:hidden">Gallery</h2>
 				<div className=" pt-[25px] grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-10  relative z-30 overflow-hidden">
@@ -62,6 +63,7 @@ function AboutAndGallery() {
 				</div>
 			</div>
 			<div className="h-[60px] w-full bg-gradient-to-b from-white to-transparent absolute -top-0 z-10"></div>
+			{/* <button onClick={handleClik} className="relative z-20">click</button> */}
 		</div>
 	);
 }

@@ -53,7 +53,7 @@ function SearchBar() {
 						maxLength="7"
 						className={`${
 							post === undefined ? "bg-[#F5F5F5]" : ""
-						} w-full py-[14px] px-2.5 sm:px-5 rounded-l-md outline-none text-base sm:text-[18px]`}
+						} w-full py-[14px] px-2.5 sm:px-5 cursor-text rounded-l-md outline-none text-base sm:text-[18px]`}
 					/>
 				</ReactTyped>
 

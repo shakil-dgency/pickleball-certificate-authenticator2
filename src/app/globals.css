@@ -153,6 +153,9 @@ button.send .loader.active {
 	transition: 1.5s cubic-bezier(0.35, -0.77, 0.67, 1.88);
 }
 
+
+
+
 .button.dark-single {
 	--background: none;
 	--rectangle: #FA9D00;

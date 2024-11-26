@@ -13,10 +13,14 @@ function GlobalContainer() {
 	const { post, input } = useGlobalState();
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		setTimeout(() => {
+			window.scrollTo(0, 0);
+		}, 200);
+	},[ ,post]);
+	// const handleClik = ()=>{
+	// 	window.scrollTo(0, 0);
 
-		console.log(post);
-	},[post]);
+	// }
 
 	return (
 		<div>

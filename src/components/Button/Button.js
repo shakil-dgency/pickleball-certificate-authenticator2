@@ -5,19 +5,8 @@ import React, { useEffect, useState } from "react";
 function Button({ certificateNumber }) {
 	const [isDownloading, setIsDownloading] = useState(false);
 
-	useEffect(async () => {
+	useEffect(async() => {
 		const button = document.querySelector(".button");
-
-		//download certificate
-		const response = await fetch(`/pdf?${certificateNumber}`);
-		if (!response.ok) {
-			throw new Error("Failed to download the PDF.");
-		}
-
-		const blob = await response.blob();
-		const url = window.URL.createObjectURL(blob);
-
-		//
 
 		const duration = 2500;
 		const svg = button.querySelector("svg");
@@ -69,6 +58,23 @@ function Button({ certificateNumber }) {
 			return `<path d="${d}" />`;
 		}
 
+		setIsDownloading(true)
+		//download certificate
+		const response = await fetch(`/pdf?${certificateNumber}`);
+		if (!response.ok) {
+			throw new Error("Failed to download the PDF.");
+		}
+
+		if(response.ok){
+			setIsDownloading(false)
+		}
+
+		const blob = await response.blob();
+		const url = window.URL.createObjectURL(blob);
+
+		//
+
+
 		button.addEventListener("click", (e) => {
 			e.preventDefault();
 			if (!button.classList.contains("loading")) {
@@ -116,11 +122,11 @@ function Button({ certificateNumber }) {
 						duration: 0.6,
 						ease: Power3.easeIn,
 					});
-					setIsDownloading(true);
+					
 
 					setTimeout(() => {
 						button.classList.remove("loading");
-						setIsDownloading(false);
+						
 
 						svg.innerHTML = ""; // Regenerate with your initial path
 
@@ -172,8 +178,7 @@ function Button({ certificateNumber }) {
 	return (
 		<div className="container">
 			<a
-				href="#"
-				className="button dark-single flex items-center "
+				className="button dark-single flex items-center cursor-pointer"
 				// onClick={(e) => {
 				// 	e.preventDefault();
 				// 	handleDownload();
@@ -181,8 +186,9 @@ function Button({ certificateNumber }) {
 			>
 				{" "}
 				<span className=" bg-[#fca91c] h-full pl-8 pr-4 flex items-center text-white">
-					<span className="text">Download Your Certificate</span>
+					<span className={`text ${isDownloading?'translate-y-[-40px]': 'translate-y-0'}`}>Download Your Certificate</span>
 					<span className="D_completed absolute translate-y-[40px]">Download Completed</span>
+					<span className={`D_loading absolute  ${isDownloading?'translate-y-0': 'translate-y-[40px]'}`}>Please Wait</span>
 				</span>
 				<div className="inner">
 					<svg viewBox="0 0 24 24"></svg>
