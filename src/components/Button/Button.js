@@ -5,9 +5,21 @@ import React, { useEffect, useState } from "react";
 function Button({ certificateNumber }) {
 	const [isDownloading, setIsDownloading] = useState(false);
 
-	useEffect(() => {
+	useEffect(async () => {
 		const button = document.querySelector(".button");
-		const duration = 3000;
+
+		//download certificate
+		const response = await fetch(`/pdf?${certificateNumber}`);
+		if (!response.ok) {
+			throw new Error("Failed to download the PDF.");
+		}
+
+		const blob = await response.blob();
+		const url = window.URL.createObjectURL(blob);
+
+		//
+
+		const duration = 2500;
 		const svg = button.querySelector("svg");
 		const svgPath = new Proxy(
 			{ y: null, smoothing: null },
@@ -58,7 +70,6 @@ function Button({ certificateNumber }) {
 		}
 
 		button.addEventListener("click", (e) => {
-			
 			e.preventDefault();
 			if (!button.classList.contains("loading")) {
 				button.classList.add("loading");
@@ -78,6 +89,17 @@ function Button({ certificateNumber }) {
 				});
 
 				setTimeout(() => {
+					//download link
+					const link = document.createElement("a");
+					link.href = url;
+					link.setAttribute("download", `pickleballcertified-authentic-${certificateNumber}.pdf`);
+					document.body.appendChild(link);
+					link.click();
+					link.remove();
+					window.URL.revokeObjectURL(url);
+
+					//
+
 					svg.innerHTML = getPath(0, 0, [
 						[3, 14],
 						[8, 19],
@@ -115,47 +137,47 @@ function Button({ certificateNumber }) {
 							duration: 0.6,
 							ease: Power3.easeOut,
 						});
-					}, 5000);
+					}, 4000);
 				}, duration / 2);
 			}
 		});
 	}, []);
 
-	const handleDownload = async () => {
-		if (!isDownloading) {
-			try {
-				const response = await fetch(`/pdf?${certificateNumber}`);
-				if (!response.ok) {
-					throw new Error("Failed to download the PDF.");
-				}
+	// const handleDownload = async () => {
+	// 	if (!isDownloading) {
+	// 		try {
+	// 			const response = await fetch(`/pdf?${certificateNumber}`);
+	// 			if (!response.ok) {
+	// 				throw new Error("Failed to download the PDF.");
+	// 			}
 
-				if (response.ok) {
-					const blob = await response.blob();
-					const url = window.URL.createObjectURL(blob);
+	// 			if (response.ok) {
+	// 				const blob = await response.blob();
+	// 				const url = window.URL.createObjectURL(blob);
 
-					const link = document.createElement("a");
-					link.href = url;
-					link.setAttribute("download", `pickleballcertified-authentic-${certificateNumber}.pdf`);
-					document.body.appendChild(link);
-					link.click();
-					link.remove();
-					window.URL.revokeObjectURL(url);
-				}
-			} catch (error) {
-				console.error(error.message);
-			}
-		}
-	};
+	// 				const link = document.createElement("a");
+	// 				link.href = url;
+	// 				link.setAttribute("download", `pickleballcertified-authentic-${certificateNumber}.pdf`);
+	// 				document.body.appendChild(link);
+	// 				link.click();
+	// 				link.remove();
+	// 				window.URL.revokeObjectURL(url);
+	// 			}
+	// 		} catch (error) {
+	// 			console.error(error.message);
+	// 		}
+	// 	}
+	// };
 
 	return (
 		<div className="container">
 			<a
 				href="#"
 				className="button dark-single flex items-center "
-				onClick={(e) => {
-					e.preventDefault();
-					handleDownload();
-				}}
+				// onClick={(e) => {
+				// 	e.preventDefault();
+				// 	handleDownload();
+				// }}
 			>
 				{" "}
 				<span className=" bg-[#fca91c] h-full pl-8 pr-4 flex items-center text-white">
