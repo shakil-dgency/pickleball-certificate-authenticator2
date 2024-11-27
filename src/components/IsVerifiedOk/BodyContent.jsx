@@ -84,7 +84,7 @@ function BodyContent({ post }) {
 					<div className="">
 						<p className="text-[28px] sm:text-[32px] font-[600] text-[#212222] font-barlow">Signed By</p>
 						<div className="flex items-center gap-4 pt-3">
-							<img src={post?.signed_by_picture} height={100} width={100} alt="" quality={65}  priority className="h-[100px] w-[100px] object-cover flex-none" />
+							<img src={post?.signed_by_picture} height={100} width={100} alt=""   className="h-[100px] w-[100px] object-cover flex-none" />
 							<div className="max-w-[200px]">
 								<p className="text-[20px] text-[#262626] font-[500]">{post?.signed_by_player_name}</p>
 								<p className="text-[14px] text-[#262626]">{post?.signed_by_profession}</p>
@@ -100,7 +100,7 @@ function BodyContent({ post }) {
 					<Image src={logo} height={135} width={135} className="" alt="" />
 					<p className="pt-4 pb-8 text-[36px] font-[600]">Item Picture</p>
 					<div className="max-w-[500px]">
-						<img src={post?.item_images} height={550} width={500} quality={65}  priority className="h-[550px] w-auto object-cover" alt="" />
+						<img src={post?.item_images} height={550} width={500}  className="h-[550px] w-auto object-cover" alt="" />
 					</div>
 					<div className="flex flex-col items-center mt-10">
 						<p className="text-[28px] text-center font-barlow mb-3">Download Your Certificate </p>
