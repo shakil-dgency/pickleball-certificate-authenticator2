@@ -12,16 +12,16 @@ const styles = StyleSheet.create({
 		position: "relative",
 		height: "100%",
 		width: "100%",
-		objectFit:'cover',
+		objectFit: "cover",
 		paddingTop: 30,
 		paddingLeft: 30,
-		paddingRight:40
+		paddingRight: 40,
 	},
 	backgroundImage: {
 		position: "absolute", // Make the image a background
 		top: 0,
 		left: 0,
-		
+
 		width: "100%",
 		height: "100%",
 		zIndex: -1, // Send it to the background
@@ -119,13 +119,13 @@ const styles = StyleSheet.create({
 	},
 	imageItemContainer: {
 		flex: 2,
-		marginTop:10
+		marginTop: 10,
 	},
 	itemImage: {
 		borderRadius: 15,
 		height: 252,
 		width: 212,
-		marginBottom: 15
+		marginBottom: 15,
 	},
 });
 
@@ -142,7 +142,10 @@ const MyDocument = ({ post }) => {
 					<View style={styles.header}>
 						<Image src={`${process.env.BASE_URL}/certificatelogo.png`} style={{ width: 200, height: 46 }} />
 						<Text style={styles.title}>
-							Serial Number - <Text style={styles.serialNumber}>{post?.certificate_number} <Image src={`${process.env.BASE_URL}/check.png`} style={{width:13, height:13,paddingTop: 4}} /></Text>
+							Serial Number -{" "}
+							<Text style={styles.serialNumber}>
+								{post?.certificate_number} <Image src={`${process.env.BASE_URL}/check.png`} style={{ width: 13, height: 13, paddingTop: 4 }} />
+							</Text>
 						</Text>
 					</View>
 
@@ -214,13 +217,16 @@ export async function GET(req, res) {
 
 	const queryString = url.search.slice(1);
 	try {
-		const response = await fetch(`https://certificate.thepickleballscoreboard.com/wp-json/cac/v1/certificates/${queryString}`);
+		const response = await fetch(`https://certificate.thepickleballscoreboard.com/wp-json/cac/v1/certificates/${queryString}`, {
+			cache: "no-cache",
+		});
 
 		if (!response.ok) {
 			return NextResponse.json({ error: "Failed to fetch certificate" }, { status: response.status });
 		}
 
 		const data = await response.json();
+		
 
 		const dynamicData = {
 			title: "this is text",

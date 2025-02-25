@@ -73,8 +73,10 @@ function Button({ certificateNumber }) {
 
 			const blob = await response.blob();
 			const url = window.URL.createObjectURL(blob);
+			
+			
 
-			//
+			
 
 			button.addEventListener("click", (e) => {
 				e.preventDefault();

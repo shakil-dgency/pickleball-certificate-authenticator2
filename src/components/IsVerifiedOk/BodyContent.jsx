@@ -49,7 +49,7 @@ function BodyContent({ post }) {
 		return formattedDate;
 	};
 
-	console.log(post);
+	// console.log(post);
 	
 	return (
 		<div>
