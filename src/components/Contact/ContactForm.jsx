@@ -23,46 +23,37 @@ function ContactForm() {
 		e.preventDefault();
 
 		if (typeof window === "undefined") return; // Prevent server-side execution
-		
+
 		const token = await getCaptchaToken();
 		const newData = { ...formData, token };
 
-		let text = document.querySelector(".text");
-		let send =document.querySelector(".send");
-		let loader =document.querySelector(".loader");
-		let success =document.querySelector(".success");
+		useEffect(() => {
+			let text = document.querySelector(".text");
+			let send = document.querySelector(".send");
+			let loader = document.querySelector(".loader");
+			let success = document.querySelector(".success");
 
-       console.log(document);
-	   
-
-			if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
-				// Add 'active' class to elements
+			if (text && send && loader && success) {
 				text.classList.add("active");
 				send.classList.add("active");
 				loader.classList.add("active");
 
-				// Delay to add 'finished' class
-				setTimeout(function () {
-					// document.querySelector(".send").classList.add("finished");
+				setTimeout(() => {
 					loader.classList.remove("active");
 					text.classList.remove("active");
 					send.classList.remove("active");
 					setIsSuccess(true);
 				}, 1700);
 
-				// Delay to add 'active' class to '.done' element
-				setTimeout(function () {
-					// document.querySelector(".done").classList.add("active");
+				setTimeout(() => {
 					success.classList.add("active");
 				}, 1600);
 
-				setTimeout(function () {
-					// document.querySelector(".done").classList.add("active");
+				setTimeout(() => {
 					success.classList.remove("active");
 				}, 4000);
 			}
-
-
+		}, []);
 
 		// if (isSuccess === true) {
 		try {
@@ -87,7 +78,7 @@ function ContactForm() {
 	// 	const getFinishedClass = document.querySelector(".send");
 
 	// 	document.querySelector(".send").addEventListener("click", function () {
-		
+
 	// 	});
 	// }, []);
 
@@ -171,7 +162,14 @@ function ContactForm() {
 						</div>
 					</div>
 				</form>
-				<Image src={contact} height={97} width={242}  priority  className="absolute bottom-4 left-[50%] translate-x-[-50%] sm:translate-x-0 sm:left-4" alt="" />
+				<Image
+					src={contact}
+					height={97}
+					width={242}
+					priority
+					className="absolute bottom-4 left-[50%] translate-x-[-50%] sm:translate-x-0 sm:left-4"
+					alt=""
+				/>
 			</div>
 		</div>
 	);
