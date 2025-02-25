@@ -1,5 +1,5 @@
-"use client";
-import React, { useEffect } from "react";
+
+import React from "react";
 import Hero from "./Home/Hero/Hero";
 import PurchaseIncludes from "./Home/PurchaseIncludes";
 import AboutAndGallery from "./Home/AboutAndGallery";
