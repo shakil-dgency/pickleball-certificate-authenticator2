@@ -21,6 +21,9 @@ function ContactForm() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		if (typeof window === "undefined") return; // Prevent server-side execution
+		
 		const token = await getCaptchaToken();
 		const newData = { ...formData, token };
 
