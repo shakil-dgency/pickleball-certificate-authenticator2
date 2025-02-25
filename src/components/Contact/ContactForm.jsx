@@ -24,32 +24,38 @@ function ContactForm() {
 		const token = await getCaptchaToken();
 		const newData = { ...formData, token };
 
+		let text = document.querySelector(".text");
+		let send =document.querySelector(".send");
+		let loader =document.querySelector(".loader");
+		let success =document.querySelector(".success");
 
+       console.log(document);
+	   
 
 			if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
 				// Add 'active' class to elements
-				document.querySelector(".text").classList.add("active");
-				document.querySelector(".send").classList.add("active");
-				document.querySelector(".loader").classList.add("active");
+				text.classList.add("active");
+				send.classList.add("active");
+				loader.classList.add("active");
 
 				// Delay to add 'finished' class
 				setTimeout(function () {
 					// document.querySelector(".send").classList.add("finished");
-					document.querySelector(".loader").classList.remove("active");
-					document.querySelector(".text").classList.remove("active");
-					document.querySelector(".send").classList.remove("active");
+					loader.classList.remove("active");
+					text.classList.remove("active");
+					send.classList.remove("active");
 					setIsSuccess(true);
 				}, 1700);
 
 				// Delay to add 'active' class to '.done' element
 				setTimeout(function () {
 					// document.querySelector(".done").classList.add("active");
-					document.querySelector(".success").classList.add("active");
+					success.classList.add("active");
 				}, 1600);
 
 				setTimeout(function () {
 					// document.querySelector(".done").classList.add("active");
-					document.querySelector(".success").classList.remove("active");
+					success.classList.remove("active");
 				}, 4000);
 			}
 
