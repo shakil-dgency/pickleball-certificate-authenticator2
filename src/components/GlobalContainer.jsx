@@ -7,16 +7,19 @@ import BodyContent from "./IsVerifiedOk/BodyContent";
 import HeroOk from "./IsVerifiedOk/HeroOk";
 import HeroFailed from "./IsVerificationFaild/HeroFailed";
 import FailedMessage from "./IsVerificationFaild/FailedMessage";
-import { useGlobalState } from "@/context/GlobalStateContext";
+// import { useGlobalState } from "@/context/GlobalStateContext";
 
 function GlobalContainer() {
-	const { post, input } = useGlobalState();
+	// const { post, input } = useGlobalState();
 
-	useEffect(() => {
-		setTimeout(() => {
-			window.scrollTo(0, 0);
-		}, 200);
-	},[ ,post]);
+	let post = null;
+
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		window.scrollTo(0, 0);
+	// 	}, 200);
+	// },[ ,post]);
+
 	// const handleClik = ()=>{
 	// 	window.scrollTo(0, 0);
 
