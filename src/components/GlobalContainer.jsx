@@ -28,8 +28,8 @@ function GlobalContainer() {
 				{post === null && (
 					<div>
 						{/* <Hero /> */}
-						<PurchaseIncludes />
-						<AboutAndGallery />
+						{/* <PurchaseIncludes />
+						<AboutAndGallery /> */}
 					</div>
 				)}
 
@@ -37,7 +37,7 @@ function GlobalContainer() {
 				{post !== null && post !== undefined && (
 					<div>
 						{/* <HeroOk /> */}
-						<BodyContent post={post} />
+						{/* <BodyContent post={post} /> */}
 					</div>
 				)}
 
@@ -46,7 +46,7 @@ function GlobalContainer() {
 				{post === undefined && (
 					<div>
 						{/* <HeroFailed /> */}
-						<FailedMessage input={input} />
+						{/* <FailedMessage input={input} /> */}
 					</div>
 				)}
 			</div>
