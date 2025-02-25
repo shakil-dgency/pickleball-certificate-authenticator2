@@ -4,42 +4,37 @@ import React, { useState } from "react";
 import logo from "../../../public/footer_logo.svg";
 import Lottie from "lottie-react";
 import check from "../../../public/IsverifiedOk/check.json";
-import { FaArrowDownLong } from "react-icons/fa6";
-
-import { useRef } from "react";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 import Button from "../Button/Button";
 
 function BodyContent({ post }) {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const handleDownload = async (e) => {
-		e.preventDefault();
-		setIsLoading(true);
+	// const handleDownload = async (e) => {
+	// 	e.preventDefault();
+	// 	setIsLoading(true);
 
-		try {
-			const response = await fetch(`/pdf?${post?.certificate_number}`);
-			if (!response.ok) {
-				throw new Error("Failed to fetch the PDF.");
-			}
+	// 	try {
+	// 		const response = await fetch(`/pdf?${post?.certificate_number}`);
+	// 		if (!response.ok) {
+	// 			throw new Error("Failed to fetch the PDF.");
+	// 		}
 
-			const blob = await response.blob();
-			const url = window.URL.createObjectURL(blob);
+	// 		const blob = await response.blob();
+	// 		const url = window.URL.createObjectURL(blob);
 
-			const link = document.createElement("a");
-			link.href = url;
-			link.setAttribute("download", `pickleballcertified-authentic-${post?.certificate_number}.pdf`);
-			document.body.appendChild(link);
-			link.click();
-			link.remove();
-			window.URL.revokeObjectURL(url);
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+	// 		const link = document.createElement("a");
+	// 		link.href = url;
+	// 		link.setAttribute("download", `pickleballcertified-authentic-${post?.certificate_number}.pdf`);
+	// 		document.body.appendChild(link);
+	// 		link.click();
+	// 		link.remove();
+	// 		window.URL.revokeObjectURL(url);
+	// 	} catch (error) {
+	// 		console.error(error.message);
+	// 	} finally {
+	// 		setIsLoading(false);
+	// 	}
+	// };
 
 	const date = (dateStr) => {
 		const date = new Date(dateStr);
