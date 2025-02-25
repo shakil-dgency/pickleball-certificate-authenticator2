@@ -37,7 +37,7 @@ function GlobalContainer() {
 				{post !== null && post !== undefined && (
 					<div>
 						<HeroOk />
-						<BodyContent post={post} />
+						{/* <BodyContent post={post} /> */}
 					</div>
 				)}
 
