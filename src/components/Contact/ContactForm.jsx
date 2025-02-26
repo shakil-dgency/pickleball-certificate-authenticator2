@@ -1,6 +1,6 @@
-"use client";
+"use client"
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import contact from "../../../public/contact.svg";
 import axios from "axios";
 import { getCaptchaToken } from "@/server/utils/captcha";
@@ -17,38 +17,9 @@ function ContactForm() {
 		message: "",
 	});
 
-	const [isSuccess, setIsSuccess] = useState(false);
+	// const [isSuccess, setIsSuccess] = useState(false);
 
 	
-	// useEffect(() => {
-	// 	if (typeof window === "undefined") return; // Ensure this runs only in the browser
-
-	// 	const text = document.querySelector(".text");
-	// 	const send = document.querySelector(".send");
-	// 	const loader = document.querySelector(".loader");
-	// 	const success = document.querySelector(".success");
-
-	// 	if (text && send && loader && success) {
-	// 		text.classList.add("active");
-	// 		send.classList.add("active");
-	// 		loader.classList.add("active");
-
-	// 		setTimeout(() => {
-	// 			loader.classList.remove("active");
-	// 			text.classList.remove("active");
-	// 			send.classList.remove("active");
-	// 			setIsSuccess(true);
-	// 		}, 1700);
-
-	// 		setTimeout(() => {
-	// 			success.classList.add("active");
-	// 		}, 1600);
-
-	// 		setTimeout(() => {
-	// 			success.classList.remove("active");
-	// 		}, 4000);
-	// 	}
-	// }, [isSuccess]); 
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -68,7 +39,6 @@ function ContactForm() {
 				message: "",
 			});
 
-			setIsSuccess(true); 
 		} catch (error) {
 			console.error("Error sending form:", error);
 		}

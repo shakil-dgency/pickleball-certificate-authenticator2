@@ -62,7 +62,7 @@ function Button({ certificateNumber }) {
 			setIsDownloading(true);
 
 			//download certificate
-			const response = await fetch(`/pdf?${certificateNumber}`);
+			const response = await fetch(`/api/pdf?${certificateNumber}`);
 			if (!response.ok) {
 				throw new Error("Failed to download the PDF.");
 			}
