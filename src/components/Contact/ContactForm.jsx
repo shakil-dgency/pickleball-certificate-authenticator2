@@ -19,47 +19,46 @@ function ContactForm() {
 
 	const [isSuccess, setIsSuccess] = useState(false);
 
+	
+	// useEffect(() => {
+	// 	if (typeof window === "undefined") return; // Ensure this runs only in the browser
+
+	// 	const text = document.querySelector(".text");
+	// 	const send = document.querySelector(".send");
+	// 	const loader = document.querySelector(".loader");
+	// 	const success = document.querySelector(".success");
+
+	// 	if (text && send && loader && success) {
+	// 		text.classList.add("active");
+	// 		send.classList.add("active");
+	// 		loader.classList.add("active");
+
+	// 		setTimeout(() => {
+	// 			loader.classList.remove("active");
+	// 			text.classList.remove("active");
+	// 			send.classList.remove("active");
+	// 			setIsSuccess(true);
+	// 		}, 1700);
+
+	// 		setTimeout(() => {
+	// 			success.classList.add("active");
+	// 		}, 1600);
+
+	// 		setTimeout(() => {
+	// 			success.classList.remove("active");
+	// 		}, 4000);
+	// 	}
+	// }, [isSuccess]); 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		if (typeof window === "undefined") return; // Prevent server-side execution
 
 		const token = await getCaptchaToken();
 		const newData = { ...formData, token };
 
-		useEffect(() => {
-			let text = document.querySelector(".text");
-			let send = document.querySelector(".send");
-			let loader = document.querySelector(".loader");
-			let success = document.querySelector(".success");
-
-			if (text && send && loader && success) {
-				text.classList.add("active");
-				send.classList.add("active");
-				loader.classList.add("active");
-
-				setTimeout(() => {
-					loader.classList.remove("active");
-					text.classList.remove("active");
-					send.classList.remove("active");
-					setIsSuccess(true);
-				}, 1700);
-
-				setTimeout(() => {
-					success.classList.add("active");
-				}, 1600);
-
-				setTimeout(() => {
-					success.classList.remove("active");
-				}, 4000);
-			}
-		}, []);
-
-		// if (isSuccess === true) {
 		try {
 			const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-			const response = await Promise.race([axios.post(`${apiUrl}/api/send-contact-info`, newData)]);
+			await axios.post(`${apiUrl}/api/send-contact-info`, newData);
 
 			setFormData({
 				firstName: "",
@@ -68,19 +67,12 @@ function ContactForm() {
 				phoneNumber: "",
 				message: "",
 			});
+
+			setIsSuccess(true); 
 		} catch (error) {
-			console.log(error);
+			console.error("Error sending form:", error);
 		}
-		// }
 	};
-
-	// useEffect(() => {
-	// 	const getFinishedClass = document.querySelector(".send");
-
-	// 	document.querySelector(".send").addEventListener("click", function () {
-
-	// 	});
-	// }, []);
 
 	return (
 		<div className="g__mobile-container ">
