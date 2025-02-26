@@ -1,8 +1,9 @@
-
+"use client"
 import Image from "next/image";
 import React from "react";
 import logo from "../../../public/footer_logo.svg";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import check from "../../../public/IsverifiedOk/check.json";
 import Button from "../Button/Button";
 

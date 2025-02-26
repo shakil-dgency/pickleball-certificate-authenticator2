@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import contact from "../../../public/contact.svg";
 import axios from "axios";
 import { getCaptchaToken } from "@/server/utils/captcha";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 // import success from "../../../public/success.json"
 import check from "../../../public/IsverifiedOk/check.json";
 
@@ -17,7 +18,7 @@ function ContactForm() {
 		message: "",
 	});
 
-	// const [isSuccess, setIsSuccess] = useState(false);
+	const [isSuccess, setIsSuccess] = useState(false);
 
 	
 
@@ -26,6 +27,37 @@ function ContactForm() {
 
 		const token = await getCaptchaToken();
 		const newData = { ...formData, token };
+
+		let text = document.querySelector(".text");
+		let send =document.querySelector(".send");
+		let loader =document.querySelector(".loader");
+		let success =document.querySelector(".success");
+
+
+		if (formData.firstName !== "" && formData.lastName !== "" && formData.email !== "" && formData.phoneNumber !== "" && formData.message !== "") {
+			// Add 'active' class to elements
+			text.classList.add("active");
+			send.classList.add("active");
+			loader.classList.add("active");
+
+			// Delay to add 'finished' class
+			setTimeout(function () {
+				loader.classList.remove("active");
+				text.classList.remove("active");
+				send.classList.remove("active");
+				setIsSuccess(true);
+			}, 1700);
+
+			// Delay to add 'active' class to '.done' element
+			setTimeout(function () {
+				success.classList.add("active");
+			}, 1600);
+
+			setTimeout(function () {
+				// document.querySelector(".done").classList.add("active");
+				success.classList.remove("active");
+			}, 4000);
+		}
 
 		try {
 			const apiUrl = process.env.NEXT_PUBLIC_API_URL;
