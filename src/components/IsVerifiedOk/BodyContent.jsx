@@ -13,12 +13,12 @@ function BodyContent({ post }) {
 	const date = (dateStr) => {
 		const date = new Date(dateStr);
 
-		const formattedDate = date.toLocaleDateString("en-GB");
+		const formattedDate = date.toLocaleDateString("en-us");
 
 		return formattedDate;
 	};
 
-	// console.log(post);
+	console.log(post.signed_date);
 	
 	return (
 		<div>
