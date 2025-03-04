@@ -13,17 +13,26 @@ function BodyContent({ post }) {
 		// const formattedDate = date.toLocaleDateString("en-us");
 		// return formattedDate;
 
+		// Try parsing with the Date object
 		const date = new Date(dateStr);
-
-		if (isNaN(date.getTime())) {
-			return "Invalid Date"; // Handle invalid dates
+		
+		if (!isNaN(date.getTime())) {
+			// If the date is valid, format it to MM/DD/YYYY
+			const day = date.getDate().toString().padStart(2, "0");
+			const month = (date.getMonth() + 1).toString().padStart(2, "0");
+			const year = date.getFullYear();
+			return `${month}/${day}/${year}`;
 		}
 
-		const day = date.getDate().toString().padStart(2, "0");
-		const month = (date.getMonth() + 1).toString().padStart(2, "0");
-		const year = date.getFullYear();
+		// Fallback to manual parsing if Date object fails
+		const parts = dateStr.split(" ")[0].split("-"); // Extract YYYY, MM, DD
 
-		return `${month}/${day}/${year}`; // MM/DD/YYYY format
+		if (parts.length === 3) {
+			const [year, month, day] = parts;
+			return `${month}/${day}/${year}`; // Format MM/DD/YYYY
+		}
+
+		return "Invalid Date"; // Handle completely incorrect formats
 	};
 
 	console.log(post.signed_date);
